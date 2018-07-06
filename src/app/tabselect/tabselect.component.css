@@ -1,0 +1,382 @@
+/*!
+ * Bootstrap-select v1.12.3 (http://silviomoreto.github.io/bootstrap-select)
+ *
+ * Copyright 2013-2017 bootstrap-select
+ * Licensed under MIT (https://github.com/silviomoreto/bootstrap-select/blob/master/LICENSE)
+ */
+
+select.bs-select-hidden,
+select.selectpicker {
+  display: none !important;
+}
+
+.ng-select {
+  width: 220px \0;
+  /*IE9 and below*/
+}
+
+  .ng-select > .dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1;
+  }
+
+    .ng-select > .dropdown-toggle.bs-placeholder,
+    .ng-select > .dropdown-toggle.bs-placeholder:hover,
+    .ng-select > .dropdown-toggle.bs-placeholder:focus,
+    .ng-select > .dropdown-toggle.bs-placeholder:active {
+      color: #999;
+    }
+
+  .ng-select > select {
+    position: absolute !important;
+    bottom: 0;
+    left: 50%;
+    display: block !important;
+    width: 0.5px !important;
+    height: 100% !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    border: none;
+  }
+
+    .ng-select > select.mobile-device {
+      top: 0;
+      left: 0;
+      display: block !important;
+      width: 100% !important;
+      z-index: 2;
+    }
+
+.has-error .ng-select .dropdown-toggle,
+.error .ng-select .dropdown-toggle {
+  border-color: #b94a48;
+}
+
+.ng-select.fit-width {
+  width: auto !important;
+}
+
+.ng-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+  width: 220px;
+}
+
+.ng-select .dropdown-toggle:focus {
+  outline: thin dotted #333333 !important;
+  outline: 5px auto -webkit-focus-ring-color !important;
+  outline-offset: -2px;
+}
+
+.ng-select.form-control {
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+}
+
+  .ng-select.form-control:not([class*="col-"]) {
+    width: 100%;
+  }
+
+  .ng-select.form-control.input-group-btn {
+    z-index: auto;
+  }
+
+    .ng-select.form-control.input-group-btn:not(:first-child):not(:last-child) > .btn {
+      border-radius: 0;
+    }
+
+.ng-select.btn-group:not(.input-group-btn),
+.ng-select.btn-group[class*="col-"] {
+  float: none;
+  display: inline-block;
+  margin-left: 0;
+}
+
+  .ng-select.btn-group.dropdown-menu-right,
+  .ng-select.btn-group[class*="col-"].dropdown-menu-right,
+  .row .ng-select.btn-group[class*="col-"].dropdown-menu-right {
+    float: right;
+  }
+
+.form-inline .ng-select.btn-group,
+.form-horizontal .ng-select.btn-group,
+.form-group .ng-select.btn-group {
+  margin-bottom: 0;
+}
+
+.form-group-lg .ng-select.btn-group.form-control,
+.form-group-sm .ng-select.btn-group.form-control {
+  padding: 0;
+}
+
+  .form-group-lg .ng-select.btn-group.form-control .dropdown-toggle,
+  .form-group-sm .ng-select.btn-group.form-control .dropdown-toggle {
+    height: 100%;
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: inherit;
+  }
+
+.form-inline .ng-select.btn-group .form-control {
+  width: 100%;
+}
+
+.ng-select.btn-group.disabled,
+.ng-select.btn-group > .disabled {
+  cursor: not-allowed;
+}
+
+  .ng-select.btn-group.disabled:focus,
+  .ng-select.btn-group > .disabled:focus {
+    outline: none !important;
+  }
+
+.ng-select.btn-group.bs-container {
+  position: absolute;
+  height: 0 !important;
+  padding: 0 !important;
+}
+
+  .ng-select.btn-group.bs-container .dropdown-menu {
+    z-index: 1060;
+  }
+
+.ng-select.btn-group .dropdown-toggle .filter-option {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  text-align: left;
+}
+
+.ng-select.btn-group .dropdown-toggle .caret {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+
+.ng-select.btn-group[class*="col-"] .dropdown-toggle {
+  width: 100%;
+}
+
+.ng-select.btn-group .dropdown-menu {
+  min-width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+  .ng-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .ng-select.btn-group .dropdown-menu li {
+    position: relative;
+  }
+
+    .ng-select.btn-group .dropdown-menu li.active small {
+      color: #fff;
+    }
+
+    .ng-select.btn-group .dropdown-menu li.disabled a {
+      cursor: not-allowed;
+    }
+
+    .ng-select.btn-group .dropdown-menu li a {
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+      .ng-select.btn-group .dropdown-menu li a.opt {
+        position: relative;
+        padding-left: 2.25em;
+      }
+
+      .ng-select.btn-group .dropdown-menu li a span.check-mark {
+        display: none;
+      }
+
+      .ng-select.btn-group .dropdown-menu li a span.text {
+        display: inline-block;
+      }
+
+    .ng-select.btn-group .dropdown-menu li small {
+      padding-left: 0.5em;
+    }
+
+  .ng-select.btn-group .dropdown-menu .notify {
+    position: absolute;
+    bottom: 5px;
+    width: 96%;
+    margin: 0 2%;
+    min-height: 26px;
+    padding: 3px 5px;
+    background: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    opacity: 0.9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+.ng-select.btn-group .no-results {
+  padding: 3px;
+  background: #f5f5f5;
+  margin: 0 5px;
+  white-space: nowrap;
+}
+
+.ng-select.btn-group.fit-width .dropdown-toggle .filter-option {
+  position: static;
+}
+
+.ng-select.btn-group.fit-width .dropdown-toggle .caret {
+  position: static;
+  top: auto;
+  margin-top: -1px;
+}
+
+.ng-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+  position: absolute;
+  display: inline-block;
+  right: 15px;
+  margin-top: 5px;
+}
+
+.ng-select.btn-group.show-tick .dropdown-menu li a span.text {
+  margin-right: 34px;
+}
+
+.ng-select.show-menu-arrow.open > .dropdown-toggle {
+  z-index: 1061;
+}
+
+.ng-select.show-menu-arrow .dropdown-toggle:before {
+  content: '';
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid rgba(204, 204, 204, 0.2);
+  position: absolute;
+  bottom: -4px;
+  left: 9px;
+  display: none;
+}
+
+.ng-select.show-menu-arrow .dropdown-toggle:after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
+  position: absolute;
+  bottom: -4px;
+  left: 10px;
+  display: none;
+}
+
+.ng-select.show-menu-arrow.dropup .dropdown-toggle:before {
+  bottom: auto;
+  top: -3px;
+  border-top: 7px solid rgba(204, 204, 204, 0.2);
+  border-bottom: 0;
+}
+
+.ng-select.show-menu-arrow.dropup .dropdown-toggle:after {
+  bottom: auto;
+  top: -3px;
+  border-top: 6px solid white;
+  border-bottom: 0;
+}
+
+/*.dropup .dropdown-menu,
+.navbar-fixed-bottom .dropdown .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 2px;
+}*/
+
+.ng-select.show-menu-arrow.pull-right .dropdown-toggle:before {
+  right: 12px;
+  left: auto;
+}
+
+.ng-select.show-menu-arrow.pull-right .dropdown-toggle:after {
+  right: 13px;
+  left: auto;
+}
+
+.ng-select.show-menu-arrow.open > .dropdown-toggle:before,
+.ng-select.show-menu-arrow.open > .dropdown-toggle:after {
+  display: block;
+}
+
+.ng-bs-searchbox,
+.ng-bs-actionsbox,
+.bs-donebutton {
+  padding: 4px 8px;
+}
+
+.ng-bs-actionsbox {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+  .ng-bs-actionsbox .btn-group button {
+    width: 50%;
+  }
+
+.bs-donebutton {
+  float: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+  .bs-donebutton .btn-group button {
+    width: 100%;
+  }
+
+.ng-bs-searchbox + .ng-bs-actionsbox {
+  padding: 0 8px 4px;
+}
+
+.ng-bs-searchbox .form-control {
+  margin-bottom: 0;
+  width: 100%;
+  float: none;
+}
+/*# sourceMappingURL=bootstrap-select.css.map */
+
+.tabselect-table > tbody > tr,
+.tabselect-table > tbody > tr > td {
+  height: 22px !important;
+  padding: 0px !important;
+  vertical-align: middle !important;
+  padding-left: 10px !important;
+  font-size: 90% !important;
+}
+
+.tabselect-table > thead > tr,
+.tabselect-table > thead > tr > th {
+  height: 22px !important;
+  padding: 0px !important;
+  vertical-align: middle !important;
+  padding-left: 10px !important;
+  font-size: 90% !important;
+}

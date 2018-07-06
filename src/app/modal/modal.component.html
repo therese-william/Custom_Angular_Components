@@ -1,0 +1,34 @@
+<div *ngIf="showModal" [config]="{ show: true, backdrop: 'static', keyboard: true }" (onHidden)="onHidden(false)" bsModal #bsmodal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="z-index:9999999999999999">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">{{Title}}</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="onHidden(false)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body row col-md-12">
+                <div class="col-md-10 col-md-offset-1">
+                    <ng-container *ngIf="ModalType != 'Comment'">
+                        <p *ngFor="let m of Messages">
+                            {{m}}
+                        </p>
+                    </ng-container>
+                </div>
+                <div *ngIf="ModalType == 'Comment'" class="form-group col-md-offset-1">
+                    <p>
+                        <b>{{Messages[0]}}</b>
+                    </p>
+                    <div *ngIf="ModalType == 'Comment'">
+                        <input #commentInput type="text" class="form-control port-textbox text-box single-line" [(ngModel)]="comment" autofocus
+                               id="comment" name="comment" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default-btn" data-dismiss="modal" [disabled]="ModalType == 'Comment' && (!comment || comment=='')" (click)="onHidden(true)">{{OKButton}}</button>
+                <button *ngIf="ModalType!='Alert'" type="button" class="btn btn-default-btn" data-dismiss="modal" (click)="onHidden(false)">{{CancelButton}}</button>
+            </div>
+        </div>
+    </div>
+</div>

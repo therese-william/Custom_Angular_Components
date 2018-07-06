@@ -1,0 +1,42 @@
+<div [class]="_classNames" (focusout)="lstFocusout($event)" [class.open]="showList" [class.dropup]="direction == 'up'">
+  <button type="button" class="btn dropdown-toggle btn-default" [class.bs-placeholder]="isNothingSelected" #selectbtn [disabled]="disabled"
+          [title]="title" aria-expanded="true" (click)="listBtnClicked()" (keydown)="btnKeyDown($event)" autofocus>
+    <span class="filter-option pull-left">{{title}}</span>&nbsp;
+    <span class="bs-caret"><span class="caret"></span></span>
+  </button> 
+  <div class="dropdown-menu tabselect-inner open" *ngIf="!isTable || showList" #innerdiv>
+    <div class="ng-bs-searchbox tabselect-inner" *ngIf="searchable">
+      <input #searchInput type="text" autofocus class="form-control bs-searchtxt tabselect-inner" autocomplete="off" role="textbox"
+             aria-label="Search" [ngModel]="searchText" (ngModelChange)="searchList($event)" (keydown.arrowdown)="searchArrow($event,'down')" (keydown.tab)="searchTab($event)">
+    </div>
+    <div class="ng-bs-actionsbox tabselect-inner" *ngIf="multiple && showActionButtons">
+      <div class="btn-group btn-group-sm btn-block tabselect-inner">
+        <button type="button" class="actions-btn bs-select-all btn btn-default tabselect-inner" (click)="selectAllItems()">Select All</button>
+        <button type="button" class="actions-btn bs-deselect-all btn btn-default tabselect-inner" (click)="deselectAllItems()" (keydown)="checkKeyDown($event,-1)">Deselect All</button>
+      </div>
+    </div>
+    <div *ngIf="isTable" class="dropdown-menu inner tabselect-inner" (mouseenter)="isInList = true" (mouseleave)="isInList = false" [style.max-height]="tableHeight" style="overflow-y:scroll;">
+      <table #selectTable class="table-responsive table table-striped table-bordered dataTable no-footer tabselect-inner tabselect-table"
+             *ngIf="list && tableColumns && tableColumns.length>0" [style]="'max-height:' + tableHeight + 'px;overflow-y:scroll;'">
+        <thead class="tabselect-inner">
+          <tr class="tabselect-inner"><th class="tabselect-inner"></th><th class="tabselect-inner" *ngFor="let col of tableColumns">{{col.ColHeaderName}}</th></tr>
+        </thead>
+        <tbody class="tabselect-inner">
+          <ng-container *ngFor="let l of list; let i=index">
+            <tr class="tabselect-inner" (click)="rowClicked($event,i)" [class.highlight]="l.active" *ngIf="!l.hidden">
+              <td class="tabselect-inner"><input class="tabselectcheck tabselect-inner" type="checkbox" [(checked)]="l.selected" (keydown)="checkKeyDown($event,i)" /></td>
+              <td class="tabselect-inner" *ngFor="let col of tableColumns">{{l[col.ColFieldName]}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <ul #selectUL *ngIf="!isTable" class="dropdown-menu inner" role="listbox" [style.max-height]="tableHeight" style="overflow-y: auto; min-height: 0px;" (mouseenter)="isInList = true" (mouseleave)="isInList = false">
+      <li role="option" *ngFor="let item of list; let i=index" [attr.data-original-index]="i" [class.hidden]="item['hidden']" [class.active]="item.active" (click)="rowClicked($event,i)">
+        <a [tabindex]="0" class="ng-bs-option" (keydown)="checkKeyDown($event,i)">
+          <span class="text">{{item[textFieldName]}}</span><span class="glyphicon glyphicon-ok " [class.check-mark]="!item['selected']"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

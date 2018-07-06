@@ -1,0 +1,17 @@
+<select #selectlst [class]="_classNames" [disabled]="disabled" [attr.data-live-search]="searchable" multiple [title]="title" data-size="10" [attr.data-header]="header"
+        [attr.data-count-selected-text]="multipleTitle" [attr.data-none-selected-text]="emptyTitle" [attr.data-actions-box]="showActionButtons"
+        [attr.data-selected-text-format]="'count > ' + maxShownItems" [attr.data-dropup-auto]="direction != 'up'" [class.dropup]="direction=='up'"
+        [attr.data-show-content]="showContent" *ngIf="multiple">
+  <ng-container *ngFor="let item of list; let i=index">
+    <option *ngIf="!isDataContent" value="{{item[valueFieldName]}}">{{item[textFieldName]}}</option>
+    <option *ngIf="isDataContent" [attr.data-content]="item[textFieldName]">{{item[valueFieldName]}}</option>
+  </ng-container>
+</select>
+<select #selectlst [class]="_classNames" [disabled]="disabled" [attr.data-live-search]="searchable" [title]="title" data-size="10" [attr.data-header]="header"
+        [attr.data-none-selected-text]="emptyTitle" data-select-on-tab="true" [attr.data-dropup-auto]="direction != 'up'" [class.dropup]="direction=='up'" data-show-tick="true"
+        [attr.data-show-content]="showContent" *ngIf="!multiple">
+  <ng-container *ngFor="let item of list; let i=index">
+    <option *ngIf="!isDataContent" value="{{item[valueFieldName]}}">{{item[textFieldName]}}</option>
+    <option *ngIf="isDataContent" [attr.data-content]="item[textFieldName]">{{item[valueFieldName]}}</option>
+  </ng-container>
+</select>
