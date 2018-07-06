@@ -85,6 +85,15 @@ export class TabselectComponent implements OnInit, ControlValueAccessor {
     var listChanges = changes.list;
     var sizeChange = changes.size;
     var focusChange = changes.focusoninit;
+    var searchInProgressChange = changes.searchInProgress;
+    if (searchInProgressChange && searchInProgressChange.currentValue != searchInProgressChange.previousValue) {
+      //if (this.searchInProgress) {
+      //  this.showList = true;
+      //}
+      if (!this.searchInProgress && this.showList) {
+        this.focusOnSearch = true;
+      }
+    }
     if (focusChange && focusChange.isFirstChange() && focusChange.currentValue) {
       this.focusOnButton = true;
     }
@@ -134,6 +143,7 @@ export class TabselectComponent implements OnInit, ControlValueAccessor {
     if (sizeChange && sizeChange.previousValue != sizeChange.currentValue) {
       this.tableHeight = ((this.size * 30) + 23).toString() + "px";
     }
+    
   }
 
   sortSelectedList() {
@@ -211,13 +221,13 @@ export class TabselectComponent implements OnInit, ControlValueAccessor {
   ngAfterViewChecked() {
     try {
       if (this.focusOnSearch) {
-        if (this.focusOnButton) {
-          this.focusOnButton = false;
-        }
-        if (this.searchInput && this.searchInput.nativeElement) {
+        if (this.searchInput && this.searchInput.nativeElement && !this.searchInput.nativeElement.disabled) {
+          if (this.focusOnButton) {
+            this.focusOnButton = false;
+          }
           this.searchInput.nativeElement.focus();
+          this.focusOnSearch = false;
         }
-        this.focusOnSearch = false;
       }
       if (this.focusOnList) {
         if (this.focusOnButton) {
@@ -381,7 +391,7 @@ export class TabselectComponent implements OnInit, ControlValueAccessor {
   }
 
   lstFocusout(e) {
-    if (!this.isInList && !(e.relatedTarget && (e.relatedTarget.className.indexOf("tabselect-inner") >= 0 ||
+    if (!this.isInList && !this.searchInProgress && !(e.relatedTarget && (e.relatedTarget.className.indexOf("tabselect-inner") >= 0 ||
       e.relatedTarget.className.indexOf("btn dropdown-toggle btn-default") >= 0 ||
       e.relatedTarget.className.indexOf("ng-bs-option") >= 0))) {
       this.searchList("");
